@@ -1,8 +1,10 @@
-package com.suren;
+package com.suren.test;
 /**
  * @author surendar
  */
 
+import com.suren.main.ZipRange;
+import com.suren.model.Range;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;

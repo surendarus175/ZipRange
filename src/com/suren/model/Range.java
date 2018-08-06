@@ -1,4 +1,6 @@
-package com.suren;
+package com.suren.model;
+
+import com.suren.main.ZipRange;
 
 /**
  * @author surendar

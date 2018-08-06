@@ -1,9 +1,11 @@
-package com.suren;
+package com.suren.main;
 /**
  * @author surendar
- *
- * To find out the valid Zip Ranges
  */
+
+//To find out the valid Zip Ranges
+
+import com.suren.model.Range;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,9 +17,9 @@ public class ZipRange {
 
     public static void main(String[] args) {
 
-        Range range1 = new Range(94133,94133);
-        Range range2 = new Range(94200,94299);
-        Range range3 = new Range(94226,94399);
+        Range range1 = new Range(94133, 94133);
+        Range range2 = new Range(94200, 94299);
+        Range range3 = new Range(94226, 94399);
 
         ZipRange.addZipRange(range1);
         ZipRange.addZipRange(range2);
@@ -26,7 +28,7 @@ public class ZipRange {
         showRange();
     }
 
-    protected static void addZipRange(Range toAddZipRange) {
+    public static void addZipRange(Range toAddZipRange) {
 
         if (zipRangeList.size() == 0)
             zipRangeList.add(toAddZipRange);
