@@ -2,7 +2,7 @@ package com.suren;
 /**
  * @author surendar
  *
- * To find out the Zip Ranges to
+ * To find out the valid Zip Ranges
  */
 
 import java.util.ArrayList;
@@ -15,9 +15,9 @@ public class ZipRange {
 
     public static void main(String[] args) {
 
-        Range range1 = new Range(94133, 94133);
-        Range range2 = new Range(94200, 94299);
-        Range range3 = new Range(94600, 94699);
+        Range range1 = new Range(94133,94133);
+        Range range2 = new Range(94200,94299);
+        Range range3 = new Range(94226,94399);
 
         ZipRange.addZipRange(range1);
         ZipRange.addZipRange(range2);
@@ -26,29 +26,31 @@ public class ZipRange {
         showRange();
     }
 
-    public static void addZipRange(Range toAddZipRange) {
+    protected static void addZipRange(Range toAddZipRange) {
 
         if (zipRangeList.size() == 0)
             zipRangeList.add(toAddZipRange);
 
         else {
-            //Add new Zip Range, if the range overlaps with existing range, merge them
-            ListIterator<Range> rangeListIterator = zipRangeList.listIterator();
+            ListIterator<Range> iterator = zipRangeList.listIterator();
             boolean addRange = true;
 
-            while (rangeListIterator.hasNext()) {
-                Range range = rangeListIterator.next();
-                if (range.getLowerZipCode() > range.getLowerZipCode() || range.getUpperZipCode() < range.getUpperZipCode()) {
-                    if (range.getLowerZipCode() > range.getUpperZipCode() || range.getUpperZipCode() < range.getLowerZipCode())
+            while (true) {
+                //Add new Zip Range, if the range overlaps with existing range, merge them
+                if (!iterator.hasNext())
+                    break;
+                Range range = iterator.next();
+                if (range.getLowerZipCode() > toAddZipRange.getLowerZipCode() || range.getUpperZipCode() < toAddZipRange.getUpperZipCode()) {
+                    if (range.getLowerZipCode() > toAddZipRange.getUpperZipCode() || range.getUpperZipCode() < toAddZipRange.getLowerZipCode())
                         addRange = true;
 
-                    //Zip Range overlaps, removes existing one and update toAddZipRange
+                        //Zip Range overlaps, removes existing one and update toAddZipRange
                     else {
-                        if (range.getLowerZipCode() < range.getLowerZipCode())
-                            range.setLowerZipCode(range.getLowerZipCode());
-                        if (range.getUpperZipCode() > range.getUpperZipCode())
-                            range.setUpperZipCode(range.getUpperZipCode());
-                        rangeListIterator.remove();
+                        if (range.getLowerZipCode() < toAddZipRange.getLowerZipCode())
+                            toAddZipRange.setLowerZipCode(range.getLowerZipCode());
+                        if (range.getUpperZipCode() > toAddZipRange.getUpperZipCode())
+                            toAddZipRange.setUpperZipCode(range.getUpperZipCode());
+                        iterator.remove();
                         addRange = true;
                     }
                 } else

@@ -3,12 +3,13 @@ package com.suren;
  * @author surendar
  */
 
-import junit.framework.Assert;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.ArrayList;
+
+import static org.junit.Assert.assertEquals;
 
 public class ZipRangeTest {
 
@@ -43,17 +44,18 @@ public class ZipRangeTest {
         ZipRange.addZipRange(e);
 
         //Test size
-        Assert.assertEquals("failure - expected result size match", 2, ZipRange.size());
+        assertEquals("failure - expected result size match", 2, ZipRange.size());
 
         //Test content
         ArrayList<Range> expectedResult = new ArrayList<Range>();
         expectedResult.add(a);
+
         Range f = new Range(8, 19);
         expectedResult.add(f);
-        Assert.assertEquals("failure - expected result content match", expectedResult, ZipRange.getZipRanges());
 
-        expectedResult.clear();
+        assertEquals("failure - expected result content match", expectedResult.toString(), ZipRange.getZipRanges().toString());
     }
+
 
     @Test
     public void ZipRangetestWithData1() {
@@ -68,18 +70,18 @@ public class ZipRangeTest {
         ZipRange.addZipRange(b);
         ZipRange.addZipRange(c);
 
-        Assert.assertEquals("failure - expected result size match", 3, ZipRange.size());
+        assertEquals("failure - expected result size match", 3, ZipRange.size());
 
         Range e = new Range(94133, 94133);
         Range f = new Range(94200, 94299);
         Range g = new Range(94600, 94699);
+
         expectedResult.add(e);
         expectedResult.add(f);
         expectedResult.add(g);
-        Assert.assertEquals("failure - expected result content match", expectedResult, ZipRange.getZipRanges());
 
+        assertEquals("failure - expected result content match", expectedResult.toString(), ZipRange.getZipRanges().toString());
         tearDown();
-
     }
 
     @Test
@@ -95,7 +97,7 @@ public class ZipRangeTest {
         ZipRange.addZipRange(b);
         ZipRange.addZipRange(c);
 
-        Assert.assertEquals("failure - expected result size match", 2, ZipRange.size());
+        assertEquals("failure - expected result size match", 2, ZipRange.size());
 
         Range e = new Range(94133, 94133);
         Range f = new Range(94200, 94399);
@@ -103,8 +105,7 @@ public class ZipRangeTest {
         expectedResult.add(e);
         expectedResult.add(f);
 
-        Assert.assertEquals("failure - expected result content match", expectedResult, ZipRange.getZipRanges());
-
+        assertEquals("failure - expected result content match", expectedResult.toString(), ZipRange.getZipRanges().toString());
         tearDown();
     }
 
